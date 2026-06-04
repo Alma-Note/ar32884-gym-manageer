@@ -31,6 +31,7 @@ function AddMember() {
 
     return (
         <div>
+            <p>add member</p>
             <h1>Add Member</h1>
 
             <input
