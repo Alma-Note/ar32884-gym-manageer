@@ -1,52 +1,40 @@
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useState } from "react";
 import { addMember } from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 function AddMember() {
     const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
     const [age, setAge] = useState("");
-
-    const nameRef = useRef(null);
-    const ageRef = useRef(null);
+    const [gender, setGender] = useState("");
 
     const navigate = useNavigate();
 
-    // useRef -> focus automatik në inputin e parë
-    useEffect(() => {
-        nameRef.current.focus();
-    }, []);
-
-    // useCallback -> optimizim i funksionit
-    const handleSubmit = useCallback(async () => {
-        if (!name || !age) return;
-
+    const handleSubmit = async () => {
         const newMember = {
             name,
+            surname,
             age,
+            gender
         };
 
         await addMember(newMember);
         navigate("/members");
-    }, [name, age, navigate]);
+    };
 
     return (
         <div>
-            <p>add member</p>
             <h1>Add Member</h1>
 
-            <input
-                ref={nameRef}
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
+            <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
+            <input placeholder="Surname" onChange={(e) => setSurname(e.target.value)} />
+            <input placeholder="Age" onChange={(e) => setAge(e.target.value)} />
 
-            <input
-                ref={ageRef}
-                placeholder="Age"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-            />
+            <select onChange={(e) => setGender(e.target.value)}>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
 
             <button onClick={handleSubmit}>Save</button>
         </div>

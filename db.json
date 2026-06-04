@@ -1,0 +1,26 @@
+{
+  "members": [
+    {
+      "name": "alma",
+      "surname": "rustemi",
+      "age": "20",
+      "gender": "Female",
+      "id": "39hO-BIwp40"
+    },
+    {
+      "name": "esra",
+      "surname": "kuqi",
+      "age": "40",
+      "gender": "Female",
+      "id": "CJZucuj618U"
+    },
+    {
+      "name": "faton",
+      "surname": "ademi",
+      "age": "27",
+      "gender": "Male",
+      "id": "vCs-Kd7pBEs"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

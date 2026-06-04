@@ -43,9 +43,12 @@ function Members() {
             <br /><br />
 
             {/* LIST */}
-            {filteredMembers.map((m) => (
-                <div key={m.id} style={{ border: "1px solid black", margin: "10px", padding: "10px" }}>
-                    <h3>{m.name}</h3>
+            {filteredMembers.map((m, index) => (
+                <div
+                    key={m.id}
+                    style={{ border: "1px solid black", margin: "10px", padding: "10px" }}
+                >
+                    <h3>{index + 1}. {m.name}</h3>
                     <p>Age: {m.age}</p>
 
                     <Link to={`/edit/${m.id}`}>
