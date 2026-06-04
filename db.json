@@ -15,11 +15,32 @@
       "id": "CJZucuj618U"
     },
     {
-      "name": "faton",
-      "surname": "ademi",
-      "age": "27",
-      "gender": "Male",
-      "id": "vCs-Kd7pBEs"
+      "name": "ardita",
+      "surname": "beqiri",
+      "age": "21",
+      "gender": "Female",
+      "id": "2_BaWcYdHE0"
+    },
+    {
+      "name": "emine",
+      "surname": "shabani",
+      "age": "20",
+      "gender": "Female",
+      "id": "4DBev6rZEvg"
+    },
+    {
+      "name": "era",
+      "surname": "abdiu",
+      "age": "20",
+      "gender": "Female",
+      "id": "jLlpQRkcLxk"
+    },
+    {
+      "name": "era",
+      "surname": "abdiu",
+      "age": "20",
+      "gender": "Female",
+      "id": "L4RHxU1ZkhY"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

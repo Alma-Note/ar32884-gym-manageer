@@ -12,28 +12,38 @@ function Members() {
     }, []);
 
     const loadMembers = async () => {
-        const data = await getMembers();
-        setMembers(data);
+        try {
+            const data = await getMembers();
+            setMembers(Array.isArray(data) ? data : []);
+        } catch (error) {
+            console.log("Error fetching members:", error);
+            setMembers([]);
+        }
     };
 
-    // DELETE (useCallback)
+    // DELETE
     const handleDelete = useCallback(async (id) => {
-        await deleteMember(id);
-        loadMembers();
+        try {
+            await deleteMember(id);
+            loadMembers();
+        } catch (error) {
+            console.log("Error deleting member:", error);
+        }
     }, []);
 
-    // SEARCH FILTER (useMemo)
+    // SEARCH FILTER
     const filteredMembers = useMemo(() => {
         return members.filter((m) =>
-            m.name.toLowerCase().includes(search.toLowerCase())
+            m.name?.toLowerCase().includes(search.toLowerCase())
         );
     }, [members, search]);
 
     return (
         <div>
-            <h1>Members </h1>
-<p>members</p>
-            {/* SEARCH INPUT */}
+            <h1>Members</h1>
+
+            <p>Total: {members.length}</p>
+
             <input
                 placeholder="Search member..."
                 value={search}
@@ -42,24 +52,31 @@ function Members() {
 
             <br /><br />
 
-            {/* LIST */}
-            {filteredMembers.map((m, index) => (
-                <div
-                    key={m.id}
-                    style={{ border: "1px solid black", margin: "10px", padding: "10px" }}
-                >
-                    <h3>{index + 1}. {m.name}</h3>
-                    <p>Age: {m.age}</p>
+            {filteredMembers.length === 0 ? (
+                <p>No members found</p>
+            ) : (
+                filteredMembers.map((m, index) => (
+                    <div
+                        key={m.id}
+                        style={{
+                            border: "1px solid black",
+                            margin: "10px",
+                            padding: "10px"
+                        }}
+                    >
+                        <h3>{index + 1}. {m.name}</h3>
+                        <p>Age: {m.age}</p>
 
-                    <Link to={`/edit/${m.id}`}>
-                        <button>Edit</button>
-                    </Link>
+                        <Link to={`/edit/${m.id}`}>
+                            <button>Edit</button>
+                        </Link>
 
-                    <button onClick={() => handleDelete(m.id)}>
-                        Delete
-                    </button>
-                </div>
-            ))}
+                        <button onClick={() => handleDelete(m.id)}>
+                            Delete
+                        </button>
+                    </div>
+                ))
+            )}
         </div>
     );
 }
