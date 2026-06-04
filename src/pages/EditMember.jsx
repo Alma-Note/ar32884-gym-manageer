@@ -38,7 +38,7 @@ function EditMember() {
     return (
         <div>
             <h1>Edit Member ✏️</h1>
-
+<p>edit member</p>
             <input
                 placeholder="Name"
                 value={name}
